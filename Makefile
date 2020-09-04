@@ -34,6 +34,7 @@ unit-test: generate fmt vet manifests
 	go list ./... | grep -v controller | xargs go test ${TEST_FLAGS}
 e2e-test: unit-test
     go test ./pkg/controllers/... ${TEST_FLAGS}
+
 # Build manager binary
 manager: generate fmt vet
 	CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO111MODULE=off  go build -o bin/manager cmd/controller/main.go

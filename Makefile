@@ -33,7 +33,7 @@ test: generate fmt vet manifests
 unit-test: generate fmt vet manifests
 	go list ./... | grep -v controller | xargs go test ${TEST_FLAGS}
 e2e-test: unit-test
-    go test ./pkg/controllers/... ${TEST_FLAGS}
+	go test ./pkg/controllers/... ${TEST_FLAGS}
 
 
 

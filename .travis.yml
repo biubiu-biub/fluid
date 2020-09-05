@@ -7,5 +7,6 @@ matrix:
         - linux
       go_import_path: github.com/fluid-cloudnative/fluid
       script:
-        - GO111MODULE=off make csi
+        - go env -w GO111MODULE=on
+        - make csi
 

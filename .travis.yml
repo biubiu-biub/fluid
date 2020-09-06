@@ -16,7 +16,7 @@ matrix:
         - sudo mv /tmp/kubebuilder_2.3.1_linux_${arch} /usr/local/kubebuilder
         - export PATH=$PATH:/usr/local/kubebuilder/bin
       script:
-        - go test ./pkg/utils/dataset_test.go
+        - make unit-test
         - bash <(curl -s https://codecov.io/bash)
 
 

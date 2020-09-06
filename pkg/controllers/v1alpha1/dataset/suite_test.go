@@ -17,6 +17,7 @@ package dataset
 
 import (
 	"context"
+	"fmt"
 	"os"
 	"path/filepath"
 	"testing"
@@ -120,7 +121,7 @@ var _ = Describe("dataset", func() {
 		Expect(createdDataset.Status.Phase).Should(
 			Or(Equal(datav1alpha1.NoneDatasetPhase),
 				Equal(datav1alpha1.NotBoundDatasetPhase)))
-
+		fmt.Println(createdDataset.Status.Phase)
 		By("delete dataset")
 		err = k8sClient.Delete(testCtx, &dataset)
 		Expect(err).NotTo(HaveOccurred())

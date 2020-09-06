@@ -30,6 +30,7 @@ import (
 	datav1alpha1 "github.com/fluid-cloudnative/fluid/api/v1alpha1"
 	"k8s.io/client-go/kubernetes/scheme"
 	"k8s.io/client-go/rest"
+	"github.com/fluid-cloudnative/fluid/pkg/utils"
 	"sigs.k8s.io/controller-runtime/pkg/client"
 	"sigs.k8s.io/controller-runtime/pkg/envtest"
 	"sigs.k8s.io/controller-runtime/pkg/envtest/printer"
@@ -114,12 +115,8 @@ var _ = Describe("dataset", func() {
 		Expect(err).NotTo(HaveOccurred())
 
 		By("check dataset status")
-		var createdDataset datav1alpha1.Dataset
-		var name = types.NamespacedName{
-			Namespace: dataset.Namespace,
-			Name:      dataset.Name,
-		}
-		err = k8sClient.Get(testCtx, name, &createdDataset)
+		var createdDataset *datav1alpha1.Dataset
+		createdDataset,err=utils.GetDataset(k8sClient,dataset.Name,dataset.Namespace)
 		Expect(err).NotTo(HaveOccurred())
 		Expect(createdDataset.Status.Phase).Should(
 			Or(Equal(datav1alpha1.NoneDatasetPhase),

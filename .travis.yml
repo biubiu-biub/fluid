@@ -21,7 +21,7 @@ matrix:
 #        - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 GO111MODULE=off go vet ./...
 #        - golangci-lint run --timeout=10m ./...
 #        - test -z "$(go fmt ./... 2>/dev/null | tee /dev/stderr)" || (echo "please format Go code with 'gofmt'")
-        - make e2e-test
+        - make test
         - bash <(curl -s https://codecov.io/bash)
 
 

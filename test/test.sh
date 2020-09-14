@@ -34,7 +34,7 @@ kubectl create -f testcase1/
 for ((i=0;i<200;i++));
 do
   sleep 1
-  status=$(kubectl get job | grep fluid-test |  grep -o '[0-9]\/[0-9]')
+  status=$(kubectl get job fluid-test | tail -1 |  grep -o '[0-9]\/[0-9]')
   if [ ${status} = '1/1' ] ; then
     success="1"
     break
